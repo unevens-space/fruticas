@@ -39,13 +39,9 @@ jobs:
           EXPORT_DIR="$(readlink -f public)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/index.html"
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v4
         with:
-          name: github-pages
           path: ./public
 
   deploy:
