@@ -18,7 +18,7 @@ permissions:
   id-token: write
 
 jobs:
-  export-web:
+  build:
     name: Web Export
     runs-on: ubuntu-22.04  # Use 22.04 with godot 4
     container:
@@ -28,6 +28,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           lfs: true
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
