@@ -2,7 +2,7 @@ name: Build to pages
 
 env:
   GODOT_VERSION: 4.4
-  PROJECT_PATH: "2D"
+  PROJECT_PATH: "./2D"
   
 on:
   push:
@@ -36,9 +36,9 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p ./public
-          EXPORT_DIR="$(readlink -f build)"
+          EXPORT_DIR="$(readlink -f public)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/index.html"
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -47,15 +47,7 @@ jobs:
         with:
           name: web
           path: ./public
-      # - name: Install rsync 📚
-      #   run: |
-      #     apt-get update && apt-get install -y rsync
-      # - name: Deploy to GitHub Pages 🚀
-      #   uses: peaceiris/actions-gh-pages@v4        
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./public
-     # Deployment job
+
   deploy:
     environment:
       name: github-pages
