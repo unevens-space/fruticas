@@ -42,6 +42,7 @@ jobs:
         run: |
           apt-get update && apt-get install -y rsync
       - name: Deploy to GitHub Pages 🚀
-        uses: peaceiris/actions-gh-pages@v4        with:
+        uses: peaceiris/actions-gh-pages@v4        
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web 
